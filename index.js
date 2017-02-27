@@ -3,6 +3,7 @@
  * Copyright(c) 2011 Sencha Inc.
  * Copyright(c) 2011 TJ Holowaychuk
  * Copyright(c) 2014-2015 Douglas Christopher Wilson
+ * Copyright(c) 2017 Nigel Daniels
  * MIT Licensed
  */
 
@@ -97,6 +98,7 @@ function serveIndex(root, options) {
   var stylesheet = opts.stylesheet || defaultStylesheet;
   var template = opts.template || defaultTemplate;
   var view = opts.view || 'tiles';
+  var long = opts.long;
 
   return function (req, res, next) {
     if (req.method !== 'GET' && req.method !== 'HEAD') {
@@ -154,13 +156,28 @@ function serveIndex(root, options) {
         });
         files.sort();
 
+        var longFiles = [];
+
+        if (long) {
+            for (var file of files) {
+
+                var stats = fs.lstatSync(path + '/' + file);
+
+                stats.name = file;
+                stats.ext = extname(file);
+                stats.type = stats.isDirectory() ? 'dir' : 'file';
+
+                longFiles.push(stats);
+                }
+            }
+
         // content-negotiation
         var accept = accepts(req);
         var type = accept.type(mediaTypes);
 
         // not acceptable
         if (!type) return next(createError(406));
-        serveIndex[mediaType[type]](req, res, files, next, originalDir, showUp, icons, path, view, template, stylesheet);
+        serveIndex[mediaType[type]](req, res, files, long, longFiles, next, originalDir, showUp, icons, path, view, template, stylesheet);
       });
     });
   };
@@ -170,7 +187,7 @@ function serveIndex(root, options) {
  * Respond with text/html.
  */
 
-serveIndex.html = function _html(req, res, files, next, dir, showUp, icons, path, view, template, stylesheet) {
+serveIndex.html = function _html(req, res, files, long, longFiles, next, dir, showUp, icons, path, view, template, stylesheet) {
   var render = typeof template !== 'function'
     ? createHtmlRender(template)
     : template
@@ -222,8 +239,9 @@ serveIndex.html = function _html(req, res, files, next, dir, showUp, icons, path
  * Respond with application/json.
  */
 
-serveIndex.json = function _json(req, res, files) {
-  var body = JSON.stringify(files);
+serveIndex.json = function _json(req, res, files, long, longFiles) {
+
+  var body = long ? JSON.stringify(longFiles) : JSON.stringify(files);
   var buf = new Buffer(body, 'utf8');
 
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -235,8 +253,18 @@ serveIndex.json = function _json(req, res, files) {
  * Respond with text/plain.
  */
 
-serveIndex.plain = function _plain(req, res, files) {
-  var body = files.join('\n') + '\n';
+serveIndex.plain = function _plain(req, res, files, long, longFiles) {
+  var body = '';
+
+  if (long) {
+    for (var file of longFiles) {
+        body + 'file name: ' + file.name + ', type: ' + file.type + ', size: ' + file.size + ', created: ' + file.birthtime + ', modified: ' + file.mtime + '\n';
+        }
+    body + '\n';
+  } else {
+    body = files.join('\n') + '\n';
+    }
+
   var buf = new Buffer(body, 'utf8');
 
   res.setHeader('Content-Type', 'text/plain; charset=utf-8');
