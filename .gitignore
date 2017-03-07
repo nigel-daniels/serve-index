@@ -1,3 +1,7 @@
 coverage
 node_modules
 npm-debug.log
+
+# Apple network share
+.AppleDouble/
+.DS_Store

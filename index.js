@@ -16,7 +16,7 @@
 
 var accepts = require('accepts');
 var createError = require('http-errors');
-var debug = require('debug')('serve-index');
+var debug = require('debug')('serve-lindex');
 var escapeHtml = require('escape-html');
 var fs = require('fs')
   , path = require('path')
@@ -166,7 +166,6 @@ function serveIndex(root, options) {
                 stats.name = file;
                 stats.ext = extname(file);
                 stats.type = stats.isDirectory() ? 'dir' : 'file';
-
                 longFiles.push(stats);
                 }
             }
