@@ -165,6 +165,7 @@ function serveIndex(root, options) {
 
                 stats.name = file;
                 stats.ext = extname(file);
+                stats.path = path;
                 stats.type = stats.isDirectory() ? 'dir' : 'file';
                 longFiles.push(stats);
                 }
