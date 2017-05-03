@@ -93,11 +93,11 @@ Display mode. `tiles` and `details` are available. Defaults to `tiles`.
 ```js
 var finalhandler = require('finalhandler')
 var http = require('http')
-var serveIndex = require('serve-index')
+var serveLindex = require('serve-lindex')
 var serveStatic = require('serve-static')
 
 // Serve directory indexes for public/ftp folder (with icons)
-var index = serveIndex('public/ftp', {'icons': true})
+var index = serveLindex('public/ftp', {'icons': true})
 
 // Serve up public/ftp folder files
 var serve = serveStatic('public/ftp')
@@ -119,12 +119,12 @@ server.listen(3000)
 
 ```js
 var express    = require('express')
-var serveIndex = require('serve-index')
+var serveLindex = require('serve-lindex')
 
 var app = express()
 
 // Serve URLs like /ftp/thing as public/ftp/thing
-app.use('/ftp', serveIndex('public/ftp', {'icons': true}))
+app.use('/ftp', serveLindex('public/ftp', {'icons': true}))
 app.listen()
 ```
 
