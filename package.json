@@ -1,12 +1,12 @@
 {
   "name": "serve-lindex",
   "description": "Serve long directory listings",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nigel-daniels/serve-index"
+    "url": "git+https://github.com/nigel-daniels/serve-lindex"
   },
   "dependencies": {
     "accepts": "~1.3.3",
