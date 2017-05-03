@@ -1,4 +1,4 @@
-# serve-index
+# serve-lindex
 
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
@@ -21,7 +21,7 @@ $ npm install serve-lindex
 var serveIndex = require('serve-lindex')
 ```
 
-### serveIndex(path, options)
+### serveLindex(path, options)
 
 Returns middlware that serves an index of the directory in the given `path`.
 
@@ -86,10 +86,9 @@ provided locals:
 
 When a request is made with the header set to accept JSON, for example:
 
-Request Header:
-   `Accept: application/json`
+Request Header, `Accept: application/json`
 
-The middleware responds with a JSON format response, if the long flag is set to true then you will get a response similar to the example below:
+The middleware responds with a JSON format response, if the `long` flag is set to `true` then you will get a response similar to the example below:
 
 ```json
 [{"dev":50,"mode":16877,"nlink":2,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":127625,"size":4096,"blocks":8,"atime":"2017-04-11T01:38:06.168Z","mtime":"2017-04-03T18:20:14.000Z","ctime":"2017-04-11T01:38:06.118Z","birthtime":"2017-04-11T01:38:06.118Z","name":"99 Icons","ext":"","path":"/","type":"dir"},
