@@ -12,13 +12,13 @@ This is a [Node.js](https://nodejs.org/en/) module available through the
 [`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```sh
-$ npm install serve-index
+$ npm install serve-lindex
 ```
 
 ## API
 
 ```js
-var serveIndex = require('serve-index')
+var serveIndex = require('serve-lindex')
 ```
 
 ### serveIndex(path, options)
