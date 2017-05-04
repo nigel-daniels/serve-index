@@ -80,20 +80,9 @@ provided locals:
   * `path` is the full filesystem path to `directory`.
   * `style` is the default stylesheet or the contents of the `stylesheet` option.
   * `viewName` is the view name provided by the `view` option.
-  * `long` is a Boolean to add richer information in plain text and JSON responses.
+##### long
 
-##### JSON
-
-When a request is made with the header set to accept JSON, for example:
-
-Request Header, `Accept: application/json`
-
-The middleware responds with a JSON format response, if the `long` flag is set to `true` then you will get a response similar to the example below:
-
-```json
-[{"dev":50,"mode":16877,"nlink":2,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":127625,"size":4096,"blocks":8,"atime":"2017-04-11T01:38:06.168Z","mtime":"2017-04-03T18:20:14.000Z","ctime":"2017-04-11T01:38:06.118Z","birthtime":"2017-04-11T01:38:06.118Z","name":"99 Icons","ext":"","path":"/","type":"dir"},
-{"dev":2049,"mode":33261,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":1184500,"size":15701,"blocks":32,"atime":"2013-03-28T01:55:32.000Z","mtime":"2013-03-28T01:55:32.000Z","ctime":"2017-04-11T01:38:05.829Z","birthtime":"2017-04-11T01:38:05.829Z","name":"CHANGELOG.txt","ext":".txt","path":"/","type":"file"}]
-```
+This is a Boolean to add richer information in plain text and JSON responses.  Defualts to `false`.
 
 ##### view
 
@@ -139,6 +128,19 @@ var app = express()
 // Serve URLs like /ftp/thing as public/ftp/thing
 app.use('/ftp', serveLindex('public/ftp', {'dotfiles': 'ignore', 'long': true}))
 app.listen()
+```
+
+### JSON response with long set
+
+When a request is made with the header set to accept JSON, for example:
+
+Request Header, `Accept: application/json`
+
+The middleware responds with a JSON format response, if the `long` flag is set to `true` then you will get a response similar to the example below:
+
+```json
+[{"dev":50,"mode":16877,"nlink":2,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":127625,"size":4096,"blocks":8,"atime":"2017-04-11T01:38:06.168Z","mtime":"2017-04-03T18:20:14.000Z","ctime":"2017-04-11T01:38:06.118Z","birthtime":"2017-04-11T01:38:06.118Z","name":"99 Icons","ext":"","path":"/","type":"dir"},
+{"dev":2049,"mode":33261,"nlink":1,"uid":0,"gid":0,"rdev":0,"blksize":4096,"ino":1184500,"size":15701,"blocks":32,"atime":"2013-03-28T01:55:32.000Z","mtime":"2013-03-28T01:55:32.000Z","ctime":"2017-04-11T01:38:05.829Z","birthtime":"2017-04-11T01:38:05.829Z","name":"CHANGELOG.txt","ext":".txt","path":"/","type":"file"}]
 ```
 
 ## License
