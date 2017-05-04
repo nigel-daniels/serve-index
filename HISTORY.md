@@ -12,6 +12,11 @@ unreleased
     - Add new mime types
     - Add `audio/mp3`
 
+1.8.5 / 2017-05-03
+==================
+* Added long flag long dir listing with JSON & plain text
+* Updated readme
+
 1.8.0 / 2016-06-17
 ==================
 

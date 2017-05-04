@@ -1,7 +1,7 @@
 {
   "name": "serve-lindex",
   "description": "Serve long directory listings in JSON and plain text",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "author": "Douglas Christopher Wilson <doug@somethingdoug.com>",
   "license": "MIT",
   "repository": {
