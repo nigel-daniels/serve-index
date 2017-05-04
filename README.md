@@ -80,6 +80,7 @@ provided locals:
   * `path` is the full filesystem path to `directory`.
   * `style` is the default stylesheet or the contents of the `stylesheet` option.
   * `viewName` is the view name provided by the `view` option.
+  
 ##### long
 
 This is a Boolean to add richer information in plain text and JSON responses.  Defualts to `false`.
