@@ -3,7 +3,7 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 
-  Serves pages that contain directory listings for a given path.
+Serves pages that contain directory listings for a given path.
 
 ## Install
 
@@ -23,7 +23,7 @@ var serveLindex = require('serve-lindex')
 
 ### serveLindex(path, options)
 
-Returns middlware that serves an index of the directory in the given `path`.
+Returns middleware that serves an index of the directory in the given `path`.
 
 The `path` is based off the `req.url` value, so a `req.url` of `'/some/dir`
 with a `path` of `'public'` will look at `'public/some/dir'`. If you are using
